@@ -2,12 +2,12 @@ package com.sqe.project.ladderup;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText email, password;
     Button login;
-    TextView forgot_password, register_now;
+    TextView forgot_password, registerLink;
+    ProgressBar progressbar;
     private FirebaseAuth mAuth;
 
     @Override
@@ -28,11 +29,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        email = findViewById(R.id.login_email);
-        password = findViewById(R.id.login_password);
+        email = findViewById(R.id.register_email);
+        password = findViewById(R.id.register_password);
         login = findViewById(R.id.login_btnLogin);
         forgot_password = findViewById(R.id.login_forgotPass);
-        register_now = findViewById(R.id.login_registerNow);
+        registerLink = findViewById(R.id.login_registerNow);
+        progressbar = findViewById(R.id.login_progressbar);
         mAuth = FirebaseAuth.getInstance();
 
         forgot_password.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Please contact support", Toast.LENGTH_LONG).show();
             }
         });
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,25 +58,28 @@ public class MainActivity extends AppCompatActivity {
                     toastMessage("Please write Password");
                     return;
                 }
-
+                progressbar.setVisibility(View.VISIBLE);
                 mAuth.signInWithEmailAndPassword(email.getText().toString().trim(),
                         password.getText().toString().trim())
                         .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressbar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-                                    
+
+                                    toastMessage("Login Successful");
+
                                 } else {
 
-                                    toastMessage("Email or Password is incorrect");
+                                    toastMessage("An Error Occurred while Logging-In");
                                 }
-                                
+
                             }
                         });
             }
         });
 
-        register_now.setOnClickListener(new View.OnClickListener() {
+        registerLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
