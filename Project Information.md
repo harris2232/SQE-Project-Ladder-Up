@@ -1,0 +1,1 @@
+A Semester Project to be developed in (Android Studio) through formal process by the team. This app is a basic Social Information sharing app specifically for education purposes where users can share their success stories to help out others in respective fields so that seekers can get motivation and information by reading them.
