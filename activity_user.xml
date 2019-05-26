@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_useractivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/themeColor"
+        app:titleTextColor="@color/backgroundColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_useractivity"
+        app:tabSelectedTextColor="@color/backgroundColor"
+        android:background="@color/colorPrimary"
+        app:tabTextColor="#000">
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tab_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stories"/>
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tab_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Feed"/>
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tab_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"/>
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_below="@id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+</RelativeLayout>
