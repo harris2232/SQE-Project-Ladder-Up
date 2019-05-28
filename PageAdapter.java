@@ -17,11 +17,11 @@ public class PageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int i) {
         switch (i){
             case 0:
-                //return new StoriesTab();
+                return new StoriesTab();
             case 1:
-                //return new YourFeedTab();
+                return new YourFeedTab();
             case 2:
-                //return new ProfileTab();
+                return new ProfileTab();
             default:
                 return null;
         }
