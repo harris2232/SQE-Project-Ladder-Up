@@ -9,8 +9,12 @@
         android:roundIcon="@drawable/ladderup_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".UserActivity"></activity>
+        <activity
+            android:name=".UseActivity"
+            android:label="@string/title_activity_use"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ProfilePictureUpload" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
