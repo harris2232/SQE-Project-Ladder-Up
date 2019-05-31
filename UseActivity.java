@@ -112,11 +112,7 @@ public class UseActivity extends AppCompatActivity
         } else if (id == R.id.nav_yourprofile) {
             FragmentManager FM = getSupportFragmentManager();
             FragmentTransaction FT = FM.beginTransaction();
-            Bundle data = new Bundle();
-            data.putString("email", email);
-            ProfileTab pt = new ProfileTab();
-            pt.setArguments(data);
-            FT.replace(R.id.frameMain, pt);
+            FT.replace(R.id.frameMain, new ProfileTab());
             FT.commit();
 
         } else if (id == R.id.nav_signout) {
