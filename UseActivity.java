@@ -38,6 +38,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class UseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -64,12 +66,15 @@ public class UseActivity extends AppCompatActivity
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "New Story Added", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                Intent intent = new Intent(UseActivity.this, newStoryUpload.class);
+                startActivity(intent);
+
             }
         });
 
@@ -115,7 +120,6 @@ public class UseActivity extends AppCompatActivity
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                             Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                             headerImage.setImageBitmap(bitmap);
-                            Toast.makeText(getApplicationContext(), "Image Loaded", Toast.LENGTH_LONG).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -176,6 +180,9 @@ public class UseActivity extends AppCompatActivity
         else if(id == R.id.action_exit){
             finish();
         }
+        else if(id == R.id.action_change_password){
+            toastMessage("Password cannot be changed at this time");
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -226,4 +233,6 @@ public class UseActivity extends AppCompatActivity
     private void toastMessage(String message){
         Toast.makeText(UseActivity.this, message, Toast.LENGTH_LONG).show();
     }
+
+
 }
