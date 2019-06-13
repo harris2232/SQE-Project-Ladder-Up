@@ -67,7 +67,6 @@ public class ProfileTab extends Fragment {
                             Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                             profilePicture.setImageBitmap(bitmap);
                             imageLoad.setVisibility(View.GONE);
-                            Toast.makeText(getActivity(), "Image Loaded", Toast.LENGTH_LONG).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -95,13 +94,6 @@ public class ProfileTab extends Fragment {
 
             }
         });
-
-
-
-
-
-
-
         return view;
     }
 }
