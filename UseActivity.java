@@ -52,6 +52,7 @@ public class UseActivity extends AppCompatActivity
     private DatabaseReference databaseReference;
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,8 @@ public class UseActivity extends AppCompatActivity
         fragmentTransaction.add(R.id.frameMain, new StoriesTab());
         fragmentTransaction.commit();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Newsfeed");
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -73,6 +75,9 @@ public class UseActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 Intent intent = new Intent(UseActivity.this, newStoryUpload.class);
+                Bundle username = new Bundle();
+                username.putString("username", headerName.getText().toString());
+                intent.putExtras(username);
                 startActivity(intent);
 
             }
@@ -109,7 +114,7 @@ public class UseActivity extends AppCompatActivity
         firebaseUser = mAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
         firebaseStorage = FirebaseStorage.getInstance();
-        storageReference = firebaseStorage.getReferenceFromUrl("gs://ladderupsqe.appspot.com/ProfilePictures").child(firebaseUser.getUid()+".jpg");
+        storageReference = firebaseStorage.getReferenceFromUrl("gs://ladderupsqe.appspot.com/ProfilePictures").child(firebaseUser.getUid() + ".jpg");
 
         final File localFile;
         try {
@@ -143,7 +148,7 @@ public class UseActivity extends AppCompatActivity
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                toastMessage("Error: "+databaseError);
+                toastMessage("Error: " + databaseError);
 
             }
         });
@@ -176,11 +181,9 @@ public class UseActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_help) {
             toastMessage("Help not available");
-        }
-        else if(id == R.id.action_exit){
+        } else if (id == R.id.action_exit) {
             finish();
-        }
-        else if(id == R.id.action_change_password){
+        } else if (id == R.id.action_change_password) {
             toastMessage("Password cannot be changed at this time");
         }
 
@@ -194,22 +197,25 @@ public class UseActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_stories) {
+            toolbar.setTitle("Newsfeed");
             FragmentManager FM = getSupportFragmentManager();
             FragmentTransaction FT = FM.beginTransaction();
             FT.replace(R.id.frameMain, new StoriesTab());
             FT.commit();
 
         } else if (id == R.id.nav_yourfeed) {
+            Bundle name = new Bundle();
+            name.putString("Name", headerName.getText().toString());
+            toolbar.setTitle("My Feed");
             FragmentManager FM = getSupportFragmentManager();
             FragmentTransaction FT = FM.beginTransaction();
-            Bundle data = new Bundle();
-            data.putString("email", email);
             YourFeedTab yf = new YourFeedTab();
-            yf.setArguments(data);
+            yf.setArguments(name);
             FT.replace(R.id.frameMain, yf);
             FT.commit();
 
         } else if (id == R.id.nav_yourprofile) {
+            toolbar.setTitle("My Profile");
             FragmentManager FM = getSupportFragmentManager();
             FragmentTransaction FT = FM.beginTransaction();
             FT.replace(R.id.frameMain, new ProfileTab());
@@ -217,7 +223,7 @@ public class UseActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_signout) {
 
-            Intent signout =new Intent(UseActivity.this, LoginActivity.class);
+            Intent signout = new Intent(UseActivity.this, LoginActivity.class);
             startActivity(signout);
             finish();
 
@@ -230,9 +236,12 @@ public class UseActivity extends AppCompatActivity
         return true;
     }
 
-    private void toastMessage(String message){
+    private void toastMessage(String message) {
         Toast.makeText(UseActivity.this, message, Toast.LENGTH_LONG).show();
     }
 
+    public String getName() {
+        return headerName.getText().toString();
+    }
 
 }
