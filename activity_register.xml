@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
-    android:background="@color/MainBG">
+    android:background="@color/MainBG"
+    tools:context=".RegisterActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -52,9 +52,10 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_register"
-        app:layout_constraintVertical_bias="0.069" />
+        app:layout_constraintVertical_bias="0.217" />
 
     <EditText
         android:id="@+id/register_name"
@@ -71,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_name"
-        app:layout_constraintVertical_bias="0.015" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tv_email"
@@ -132,6 +133,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="476dp"
         android:background="@drawable/edittext_shape"
+        android:inputType="textPassword"
         android:textAlignment="center"
         android:textColor="@color/themeColor"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -166,6 +168,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/edittext_shape"
+        android:inputType="textPassword"
         android:textAlignment="center"
         android:textColor="@color/themeColor"
         app:layout_constraintBottom_toBottomOf="parent"
