@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".newStoryUpload"
+    android:background="@color/MainBG">
+
+    <EditText
+        android:id="@+id/uploadStory_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:background="@drawable/edittext_shape"
+        android:hint="Title"
+        android:inputType="textPersonName"
+        android:paddingVertical="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/themeColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.056" />
+
+    <EditText
+        android:id="@+id/uploadStory_desc"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_shape"
+        android:hint="Write captions here..."
+        android:inputType="textMultiLine"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadStory_spinner"
+        app:layout_constraintVertical_bias="0.086" />
+
+    <Spinner
+        android:id="@+id/uploadStory_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="8dp"
+        android:entries="@array/storyChoices"
+        android:textAlignment="center"
+        android:background="@drawable/spinner_style"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadStory_title"
+        app:layout_constraintVertical_bias="0.094"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadStory_desc">
+
+        <Button
+            android:id="@+id/uploadStory_uploadBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape"
+            android:paddingHorizontal="15dp"
+            android:text="Upload Story"
+            android:textColor="@color/MainBG"
+            />
+
+        <Button
+            android:id="@+id/uploadStory_cancelBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape"
+            android:paddingHorizontal="15dp"
+            android:text="Cancel"
+            android:textColor="@color/MainBG"
+            />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Select Category: "
+        android:textColor="@color/themeColor"
+        app:layout_constraintBottom_toTopOf="@+id/uploadStory_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.027"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadStory_title"
+        app:layout_constraintVertical_bias="0.379" />
+
+
+</android.support.constraint.ConstraintLayout>
