@@ -11,11 +11,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -27,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     ProgressBar progressBar;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         loginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -68,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    //Check if the inputs are according to the standard and right
     private Boolean checkInputCredentials(){
         String Name             = newName.getText().toString();
         String Email            = newEmail.getText().toString().trim();
@@ -98,6 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    //add the user using the following function
     private void registerUser(){
         final String Name             = newName.getText().toString();
         final String Email            = newEmail.getText().toString().trim();
@@ -109,12 +112,15 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
-                            String id = databaseReference.push().getKey();
-                            newUser newuser = new newUser(id, Name, Email, Password);
-                            databaseReference.child(id).setValue(newuser);
-                            toastMessage("Registration Successful! Please Login now.");
-                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                            startActivity(intent);
+                            user = mAuth.getCurrentUser();
+                            newUser newuser = new newUser(Name, Email, Password);
+                            databaseReference.child(user.getUid()).setValue(newuser);
+                            toastMessage("Registration Successful! Please set profile picture now");
+                            Bundle userID = new Bundle();
+                            userID.putString("userID", user.getUid());
+                            Intent gotoPictureUpload = new Intent(RegisterActivity.this, ProfilePictureUpload.class);
+                            gotoPictureUpload.putExtras(userID);
+                            startActivity(gotoPictureUpload);
                             finish();
                         }
                         else {
@@ -124,6 +130,7 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
+    //generate toast message function used often
     private void toastMessage(String message){
         Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
     }
