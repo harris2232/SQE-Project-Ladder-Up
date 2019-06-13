@@ -4,17 +4,16 @@ public class Story {
     String title;
     String description;
     String imageID;
-    String uploaderID;
     String date;
+    String uploaderID;
     String category;
 
-    public Story(String title, String description, String imageID,
-                 String uploaderID, String date, String category) {
+    public Story(String title, String description, String imageID, String date,String uploaderID, String category) {
         this.title = title;
         this.description = description;
         this.imageID = imageID;
-        this.uploaderID = uploaderID;
         this.date = date;
+        this.uploaderID = uploaderID;
         this.category = category;
     }
 
@@ -33,12 +32,12 @@ public class Story {
         return imageID;
     }
 
-    public String getUploaderID() {
-        return uploaderID;
-    }
-
     public String getDate() {
         return date;
+    }
+
+    public String getUploaderID() {
+        return uploaderID;
     }
 
     public String getCategory() {
